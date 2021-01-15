@@ -9,19 +9,18 @@ public class CubeController : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     public float SmoothTime = 1;
    
-    bool isPause;
 
     private void Start()
     {
         isMoving = true;
-        isPause = false;
+        SceneController.instence.isPause = false;
         ToPoint = 1;
         incremental = true;
-        isPausing = false;
+        SceneController.instence.isPausing = false;
     }
     void Update()
     {
-        if (isMoving && !isPause)
+        if (isMoving && !SceneController.instence.isPause)
         {
             this.transform.position = Vector3.SmoothDamp(transform.position,positions.instence.points[ToPoint].position , ref velocity, SmoothTime);
             if(Vector3.Distance(transform.position, positions.instence.points[ToPoint].position) < 0.1)
@@ -31,13 +30,12 @@ public class CubeController : MonoBehaviour
             }
         }
     }
-    public bool isPausing; 
     private void FixedUpdate()
     {
-        if (Input.GetButton("Pause") && !isPausing)
+        if (Input.GetButton("Pause") && !SceneController.instence.isPausing)
         {
             Invoke("pauseMovement",0.2f);
-            isPausing = true;
+            SceneController.instence.isPausing = true;
         }
     }
     bool incremental;
@@ -72,14 +70,6 @@ public class CubeController : MonoBehaviour
     
     public void pauseMovement()
     {
-        if (isPause)
-        {
-            isPause = false;
-        }
-        else
-        {
-            isPause = true;
-        }
-        isPausing = false;
+        SceneController.instence.PauseGame();
     } 
 }

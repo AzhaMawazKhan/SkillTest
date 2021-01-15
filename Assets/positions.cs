@@ -13,4 +13,5 @@ public class positions : MonoBehaviour
             instence = this; 
         }
     }
+   
 }
