@@ -15,6 +15,7 @@ public class SceneController : MonoBehaviour
 
     public Text Pause;
     public GameObject SpawnButton;
+    public GameObject DateTime;
 
     private void Awake()
     {
@@ -26,6 +27,10 @@ public class SceneController : MonoBehaviour
     public void Start()
     {
         playerSpawned = false;
+    }
+    private void Update()
+    {
+        DateTime.name = System.DateTime.Now.ToString();
     }
     void FixedUpdate()
     {
